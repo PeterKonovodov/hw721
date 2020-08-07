@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        if(outString.isEmpty()) outString = editTextCoordinates.getHint().toString();
+
         if (isAddress) return "geo:" + "?q=" + outString;
         return "geo:" + outString;
     }
