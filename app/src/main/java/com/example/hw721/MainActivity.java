@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
-                ;
-
             }
         });
 
@@ -41,7 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
     private String getUriString() {
         String outString = editTextCoordinates.getText().toString();
-        return outString;
+        outString = outString.replaceFirst("\\s+", "");
+        boolean isAddress = false;
+        for (char c : outString.toCharArray()) {
+            if (Character.isLetter(c)) {
+                isAddress = true;
+                break;
+            }
+        }
+        if (isAddress) return "geo:" + "?q=" + outString;
+        return "geo:" + outString;
     }
 
 
